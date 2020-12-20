@@ -35,6 +35,24 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+
+            <div style="margin-top :5px;">
+                @if (ViewData["feedback"] != null)
+                {
+                    <div class="alert alert-primary" role="alert">
+                        @ViewData["feedback"]
+                    </div>
+                }
+
+                @if (ViewData["error"] != null)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @ViewData["error"]
+                    </div>
+                }
+            </div>
+
+
             @RenderBody()
         </main>
     </div>

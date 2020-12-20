@@ -21,7 +21,12 @@ namespace PresentationApp.Controllers
         [HttpPost] //recieve data from a form submission
         public ActionResult Contact(string email, string query)
         {
-            ViewData["feedback"] = "Thank you for your query. We will be with you shortly";
+
+            if (string.IsNullOrEmpty(query))
+            {
+                ViewData["error"] = "One of the inputs is left empty";
+            }
+            else   ViewData["feedback"] = "Thank you for your query. We will be with you shortly";
 
             return View();
         }
