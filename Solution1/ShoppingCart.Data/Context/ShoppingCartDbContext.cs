@@ -20,5 +20,10 @@ namespace ShoppingCart.Data.Context
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Product>().Property(x => x.Id).HasDefaultValueSql("NewId()");
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseLazyLoadingProxies();
+        }
     }
 }

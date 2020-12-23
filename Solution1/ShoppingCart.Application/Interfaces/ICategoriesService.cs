@@ -7,12 +7,8 @@ using System.Text;
 
 namespace ShoppingCart.Application.Interfaces
 {
-    public interface IProductsServiceApp
+    public interface ICategoriesService
     {
-        IQueryable<ProductViewModel> GetProducts();
-
-        ProductViewModel GetProduct(Guid id);
-
-        void AddProduct(ProductViewModel model);
+        IQueryable<CategoryViewModel> GetCategories();
     }
 }

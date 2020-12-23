@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ShoppingCart.Application.Interfaces;
 using ShoppingCart.Application.Services;
+using ShoppingCart.Application.ViewModels;
 
 namespace PresentationApp.Controllers //wrong
 {
@@ -26,6 +27,31 @@ namespace PresentationApp.Controllers //wrong
         {
             var p = _prodService.GetProduct(id);
             return View(p);
+        }
+
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View(); // this method is used to load the initial page where the user inputs the data
+        }
+
+        [HttpPost]
+        public IActionResult Create(ProductViewModel data) // this is used when the user press 'Submit'
+        {
+            try
+            {
+                _prodService.AddProduct(data);
+
+                ViewData["feedback"] = "Product added successfully";
+                ModelState.Clear();
+            }
+            catch (Exception ex)
+            {
+                ViewData["error"] = "Product not added. Please check you inputs and try again";
+            }
+
+            return View();
         }
     }
 }

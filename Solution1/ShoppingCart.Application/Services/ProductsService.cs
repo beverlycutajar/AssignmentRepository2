@@ -10,12 +10,26 @@ using System.Text;
 namespace ShoppingCart.Application.Services
 {
     public class ProductsService : IProductsServiceApp
-    { //wrong
+    { 
 
         private IProductsRepository _productsRepository;
         public ProductsService(IProductsRepository productsRepository)
         {
             _productsRepository = productsRepository;
+        }
+
+        public void AddProduct(ProductViewModel model)
+        {
+            Product p = new Product()
+            {
+                Name = model.Name,
+                Description = model.Description,
+                Image = model.ImageUrl,
+                Price = model.Price,
+                Stock=model.Stock,
+                CategoryId=model.Category.Id
+            };
+            _productsRepository.addProduct(p);
         }
 
         public ProductViewModel GetProduct(Guid id)
