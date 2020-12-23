@@ -1,4 +1,6 @@
-﻿using ShoppingCart.Domain.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using ShoppingCart.Data.Context;
+using ShoppingCart.Domain.Interfaces;
 using ShoppingCart.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -9,24 +11,34 @@ namespace ShoppingCart.Data.Repositories
 {
     public class ProductsRepository : IProductsRepository
     {
+        ShoppingCartDbContext _context;
+        public ProductsRepository(ShoppingCartDbContext context)
+        {
+            _context = context;
+        }
         public Guid addProduct(Product p)
         {
-            throw new NotImplementedException();
+            _context.Products.Add(p);
+            _context.SaveChanges();
+
+            return p.Id;
         }
 
         public void deleteProduct(Guid id)
         {
-            throw new NotImplementedException();
+            Product p = GetProduct(id);
+            _context.Products.Remove(p);
+            _context.SaveChanges();
         }
 
-        public Product GetProduct()
+        public Product GetProduct(Guid id)
         {
-            throw new NotImplementedException();
+            return _context.Products.SingleOrDefault(x => x.Id == id);
         }
 
         public IQueryable<Product> GetProducts()
         {
-            throw new NotImplementedException();
+            return _context.Products.Include(x => x.Category);
         }
     }
 }

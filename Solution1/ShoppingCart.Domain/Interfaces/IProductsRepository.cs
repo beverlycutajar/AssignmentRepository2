@@ -11,7 +11,7 @@ namespace ShoppingCart.Domain.Interfaces
         IQueryable<Product> GetProducts();
         Guid addProduct(Product p);
         void deleteProduct(Guid id);
-        Product GetProduct();
+        Product GetProduct(Guid id);
 
         //IQueryable<Product> GetProducts(int category);  TO SEARCH BY CATEGORY
     }
