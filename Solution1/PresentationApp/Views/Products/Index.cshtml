@@ -19,6 +19,7 @@
                     <h5 class="card-title">@p.Name</h5>
                     <p class="card-text">@p.Price</p>
                     <a href="Products/details?id=@p.Id" class="btn btn-dark">Details</a>
+                    <a href="Products/delete?id=@p.Id" class="btn btn-danger" onclick="return window.confirm("Are you sure?")>Delete</a>
                 </div>
             </div>
             

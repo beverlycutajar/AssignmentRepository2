@@ -6,16 +6,15 @@ using System.Text;
 
 namespace ShoppingCart.Domain.Models
 {
-    public class Order
+    public class OrderDetails
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { set; get; }
         [Required]
         public virtual Product Product { get; set; }
+        
         [ForeignKey("Product")]
         public int ProductId { get; set; }
-        public int Quantity { get; set; }
-        public double Total { get; set; }
     }
 }
