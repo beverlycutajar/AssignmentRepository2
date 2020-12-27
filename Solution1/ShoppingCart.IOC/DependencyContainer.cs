@@ -32,6 +32,9 @@ namespace ShoppingCart.IOC
 
             services.AddScoped<ICategoryRepository, CategoriesRepository>();
             services.AddScoped<ICategoriesService, CategoriesService>(); // an association to add with the services collection
+
+            services.AddScoped<IMembersRepository, MembersRepository>();
+            services.AddScoped<IMembersService, MembersService>();
         }
     }
 }

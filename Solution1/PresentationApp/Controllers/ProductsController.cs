@@ -68,7 +68,7 @@ namespace PresentationApp.Controllers //wrong
         {
             _prodService.DeleteProduct(id);
 
-
+            TempData["feedback"] = "product was deleted successfully";
             return RedirectToAction("Index");
         }
     }

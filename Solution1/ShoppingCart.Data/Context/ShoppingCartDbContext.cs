@@ -14,11 +14,14 @@ namespace ShoppingCart.Data.Context
         }
         public DbSet<Product>Products { get; set; } // each table which needs to be in the database must be declared here.
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Member> Member { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Product>().Property(x => x.Id).HasDefaultValueSql("NewId()");
+            {
+                base.OnModelCreating(modelBuilder);
+                modelBuilder.Entity<Product>().Property(x => x.Id).HasDefaultValueSql("NewId()");
+            }
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
