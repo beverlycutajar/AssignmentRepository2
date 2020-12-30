@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PresentationApp.Models;
 using ShoppingCart.Application.Interfaces;
@@ -35,6 +36,7 @@ namespace PresentationApp.Controllers //wrong
 
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create() // called before loading the create page
         {
             var list = _categoriesService.GetCategories();
@@ -45,6 +47,7 @@ namespace PresentationApp.Controllers //wrong
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create(CreateModel data) // this is used when the user press 'Submit'
         {
             try
@@ -63,6 +66,8 @@ namespace PresentationApp.Controllers //wrong
             data.Categories = list.ToList();
             return View(data);
         }
+
+        [Authorize(Roles = "User")]
 
         public IActionResult Delete(Guid id)
         {

@@ -95,6 +95,8 @@ namespace PresentationApp.Areas.Identity.Pages.Account
                             LastName = Input.LastName
                         }
                         );
+
+                    _userManager.AddToRoleAsync(user, "user");
                     
                     _logger.LogInformation("User created a new account with password.");
 
